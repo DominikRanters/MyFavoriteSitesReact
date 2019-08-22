@@ -6,13 +6,17 @@ import { List, ListItem } from 'chayns-components';
 function ListComponent(props) {
 
     const {onSearch, data, handleClick} = props;
+    let listItem = '';
 
-    const listItem = data.sites.map(item => <ListItem 
-        key={item.siteId} 
-        title={item.appstoreName}
-        image={`https://sub60.tobit.com/l/${item.siteId}`}
-        onClick={ () => handleClick(`http://chayns.net/${item.siteId}/`)}
-        />) 
+    console.log(data.sites);
+    if(data.sites !== null) {
+        listItem = data.sites.map(item => <ListItem 
+            key={item.siteId} 
+            title={item.appstoreName}
+            image={`https://sub60.tobit.com/l/${item.siteId}`}
+            onClick={ () => handleClick(`http://chayns.net/${item.siteId}/`)}
+            />) 
+    }
 
     return (
         <Accordion 

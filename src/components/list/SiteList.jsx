@@ -24,9 +24,7 @@ class List extends PureComponent {
 
         this.timeout = setTimeout(() => {
             this.fetchUrl(searchValue);
-        }, 600);
-
-
+        }, 300);
     }
 
     fetchUrl(searchValue) {
