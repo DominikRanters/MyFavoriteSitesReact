@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Accordion } from 'chayns-components';
 import { Input } from 'chayns-components';
+import { Button, ChooseButton } from 'chayns-components';
+import './Form.scss'
 
 class Form extends PureComponent {
     render() {
@@ -18,7 +20,7 @@ class Form extends PureComponent {
                     />
 
                     <Input
-                    name="url"
+                        name="url"
                         placeholder="Ulr*"
                         style={{
                             marginBottom: '10px',
@@ -27,7 +29,7 @@ class Form extends PureComponent {
 
 
                     <Input
-                    name="eMail"
+                        name="eMail"
                         placeholder="eMail*"
                         style={{
                             marginBottom: '10px',
@@ -36,12 +38,16 @@ class Form extends PureComponent {
 
 
                     <Input
-                    name="kommentar"
+                        name="kommentar"
                         placeholder="Kommentar"
                         style={{
                             marginBottom: '10px',
                         }}
                     />
+
+                    <div className="form_button">
+                        <Button>senden</Button>
+                    </div>
 
                 </div>
             </Accordion>
