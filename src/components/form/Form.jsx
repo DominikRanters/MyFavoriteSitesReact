@@ -1,8 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Accordion } from 'chayns-components';
-import { Input } from 'chayns-components';
-import { Button, ChooseButton } from 'chayns-components';
 import './Form.scss';
 import fomrText from './text';
 import FormComponent from './FormConmponet';
