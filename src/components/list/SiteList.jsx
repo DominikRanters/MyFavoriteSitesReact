@@ -11,19 +11,25 @@ class List extends PureComponent {
             sites: [],
         }
 
-        this._fetchUrl('Ahaus');
+        this.fetchUrl('Ahaus');
 
-        this._fetchUrl = this._fetchUrl.bind(this);
-        this.onSearchEnter = this.onSearchEnter.bind(this);
+        this.fetchUrl = this.fetchUrl.bind(this);
+        this.onSearch = this.onSearch.bind(this);
         this.handleClick = this.handleClick.bind(this);
     }
 
-    onSearchEnter(searchValue) {
+    onSearch(searchValue) {
 
-        this._fetchUrl(searchValue);
+        clearTimeout(this.timeout);
+
+        this.timeout = setTimeout(() => {
+            this.fetchUrl(searchValue);
+        }, 600);
+
+
     }
 
-    _fetchUrl(searchValue) {
+    fetchUrl(searchValue) {
 
         let url = `https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchValue}&Skip=0&Take=50`
 
@@ -42,14 +48,14 @@ class List extends PureComponent {
     handleClick(siteUrl) {
         let win = window.open(siteUrl, '_blank');
         win.focus();
-        
+
     }
 
     render() {
 
         return (
             <ListComponent
-                onSearchEnter={this.onSearchEnter}  
+                onSearch={this.onSearch}
                 data={this.state}
                 handleClick={this.handleClick}
             />

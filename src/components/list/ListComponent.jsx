@@ -5,7 +5,7 @@ import { List, ListItem } from 'chayns-components';
 
 function ListComponent(props) {
 
-    const {onSearchEnter, data, handleClick} = props;
+    const {onSearch, data, handleClick} = props;
 
     const listItem = data.sites.map(item => <ListItem 
         key={item.siteId} 
@@ -13,13 +13,13 @@ function ListComponent(props) {
         image={`https://sub60.tobit.com/l/${item.siteId}`}
         onClick={ () => handleClick(`http://chayns.net/${item.siteId}/`)}
         />) 
-        console.log(listItem);
 
     return (
         <Accordion 
             head="Sites" 
             open="true" 
-            onSearchEnter={(value) => onSearchEnter(value)}
+            onSearch={(value) => onSearch(value)}
+            onSearchEnter={(value) => onSearch(value)}
         >
             <div className="accordion__content">
             <List>{listItem}</List>
@@ -29,7 +29,7 @@ function ListComponent(props) {
 }
 
 ListComponent.PropTypes = {
-    onSearchEnter: PropTypes.func.isRequired,
+    onSearch: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired,
     handleClick: PropTypes.func,
 }
