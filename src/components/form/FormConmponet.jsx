@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion } from 'chayns-components';
 import { Input } from 'chayns-components';
