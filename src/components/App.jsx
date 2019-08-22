@@ -13,7 +13,7 @@ class App extends PureComponent {
                 <Headline headline="Sites"/>
                 <Intro intro="Finden Sie neue Sites oder fügen Sie ihre eigene hinzu."/>
 
-                <Form />
+                <Form/>
             </div>
         );
     }
