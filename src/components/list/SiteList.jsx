@@ -8,6 +8,7 @@ class List extends PureComponent {
     constructor() {
         super();
         this.state = {
+            loading: 'false',
             sites: [],
         }
 
@@ -23,8 +24,10 @@ class List extends PureComponent {
         clearTimeout(this.timeout);
 
         this.timeout = setTimeout(() => {
+            chayns.showWaitCursor();
+            this.setState({ loading: 'true'})
             this.fetchUrl(searchValue);
-        }, 300);
+        }, 500);
     }
 
     fetchUrl(searchValue) {
@@ -36,8 +39,9 @@ class List extends PureComponent {
                 return response.json();
             }).then((json) => {
                 this.setState({
+                    loading: 'false',
                     sites: json.Data,
-                }) //, json.ResultCode
+                })
             }).catch((ex) => {
                 console.log(`Eroor`, ex)
             })

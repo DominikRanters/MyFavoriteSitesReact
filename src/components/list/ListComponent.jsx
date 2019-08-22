@@ -5,7 +5,7 @@ import { List, ListItem } from 'chayns-components';
 
 function ListComponent(props) {
 
-    const {onSearch, data, handleClick} = props;
+    const {onSearch, data, handleClick, loading} = props;
     let listItem = '';
 
     console.log(data.sites);
@@ -26,7 +26,7 @@ function ListComponent(props) {
             onSearchEnter={(value) => onSearch(value)}
         >
             <div className="accordion__content">
-            <List>{listItem}</List>
+            <List>{!loading ? {listItem} : chayns.hideWaitCursor()}</List>
             </div>
         </Accordion>
     )
@@ -36,6 +36,7 @@ ListComponent.PropTypes = {
     onSearch: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired,
     handleClick: PropTypes.func,
+    loading: PropTypes.bool,
 }
 
 export default ListComponent
