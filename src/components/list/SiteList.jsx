@@ -8,6 +8,7 @@ class List extends PureComponent {
     constructor() {
         super();
         this.state = {
+            loading: 'false',
             sites: [],
         }
 
@@ -23,13 +24,13 @@ class List extends PureComponent {
         clearTimeout(this.timeout);
 
         this.timeout = setTimeout(() => {
+            chayns.showWaitCursor();
+            this.setState({ loading: 'true'})
             this.fetchUrl(searchValue);
         }, 500);
     }
 
     fetchUrl(searchValue) {
-
-        chayns.showWaitCursor();
 
         let url = `https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchValue}&Skip=0&Take=50`
 
@@ -37,8 +38,8 @@ class List extends PureComponent {
             .then((response) => {
                 return response.json();
             }).then((json) => {
-                chayns.hideWaitCursor();
                 this.setState({
+                    loading: 'false',
                     sites: json.Data,
                 })
             }).catch((ex) => {
@@ -49,9 +50,11 @@ class List extends PureComponent {
     handleClick(siteUrl) {
         let win = window.open(siteUrl, '_blank');
         win.focus();
+
     }
 
     render() {
+
         return (
             <ListComponent
                 onSearch={this.onSearch}

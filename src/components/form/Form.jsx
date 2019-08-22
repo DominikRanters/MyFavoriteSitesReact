@@ -2,17 +2,16 @@ import React, { PureComponent } from 'react';
 import './Form.scss';
 import fomrText from './text';
 import FormComponent from './FormConmponet';
-import formText from './text';
 
 class Form extends PureComponent {
 
     constructor() {
         super();
         this.state = {
-            name: formText.emptyString,
-            url: formText.emptyString,
-            eMail: formText.emptyString,
-            kommentar: formText.emptyString,
+            name: '',
+            url: '',
+            eMail: '',
+            kommentar: '',
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,10 +38,10 @@ class Form extends PureComponent {
             }).then((data) => {
                 if (data.status == 200) {
                     this.setState({
-                        [formText.name]: fomrText.emptyString,
-                        [formText.url]: fomrText.emptyString,
-                        [formText.eMail]: fomrText.emptyString,
-                        [formText.kommentar]: fomrText.emptyString,
+                        ['name']: fomrText.emptyString,
+                        ['url']: fomrText.emptyString,
+                        ['eMail']: fomrText.emptyString,
+                        ['kommentar']: fomrText.emptyString,
                     })
                     chayns.dialog.alert(fomrText.emptyString, fomrText.sendText);
                 }
@@ -54,9 +53,9 @@ class Form extends PureComponent {
             }).then((data) => {
                 if (data.status == 200) {
                     this.setState({
-                        [formText.name]: fomrText.emptyString,
-                        [formText.url]: fomrText.emptyString,
-                        [formText.eMail]: fomrText.emptyString,
+                        ['name']: fomrText.emptyString,
+                        ['url']: fomrText.emptyString,
+                        ['eMail']: fomrText.emptyString,
                     })
                     chayns.dialog.alert(fomrText.emptyString, fomrText.sendText);
                 }

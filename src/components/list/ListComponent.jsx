@@ -2,33 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Accordion } from 'chayns-components';
 import { List, ListItem } from 'chayns-components';
-import listText from './text';
 
 function ListComponent(props) {
 
-    const { onSearch, data, handleClick } = props;
-    let listItem = listText.emptyString;
+    const {onSearch, data, handleClick, loading} = props;
+    let listItem = '';
 
-    if (data.sites !== null) {
-        listItem = data.sites.map(item => <ListItem
-            key={item.siteId}
+    console.log(data.sites);
+    if(data.sites !== null) {
+        listItem = data.sites.map(item => <ListItem 
+            key={item.siteId} 
             title={item.appstoreName}
             image={`https://sub60.tobit.com/l/${item.siteId}`}
-            onClick={() => handleClick(`http://chayns.net/${item.siteId}/`)}
-        />)
+            onClick={ () => handleClick(`http://chayns.net/${item.siteId}/`)}
+            />) 
     }
 
     return (
-        <Accordion
-            dataGroup={listText.accordionDataGroup}
-            head={listText.accordionHeadline}
-            open={listText.lisisAccordionOpen}
-            searchPlaceholder={listText.searchPlaceholder}
+        <Accordion 
+            head="Sites" 
+            open="true" 
             onSearch={(value) => onSearch(value)}
             onSearchEnter={(value) => onSearch(value)}
         >
-            <div className={listText.accordion__content}>
-                <List>{listItem}</List>
+            <div className="accordion__content">
+            <List>{!loading ? {listItem} : chayns.hideWaitCursor()}</List>
             </div>
         </Accordion>
     )
@@ -38,6 +36,7 @@ ListComponent.PropTypes = {
     onSearch: PropTypes.func.isRequired,
     data: PropTypes.object.isRequired,
     handleClick: PropTypes.func,
+    loading: PropTypes.bool,
 }
 
 export default ListComponent

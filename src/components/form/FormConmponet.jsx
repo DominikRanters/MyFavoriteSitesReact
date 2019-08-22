@@ -3,56 +3,58 @@ import PropTypes from 'prop-types';
 import { Accordion } from 'chayns-components';
 import { Input } from 'chayns-components';
 import { Button } from 'chayns-components';
-import './Form.scss';
-import formText from './text';
 
 function FormComponent(props) {
 
-    const { handleChange, handleClick, data } = props;
+    const {handleChange, handleClick, data} = props;
 
     return (
-        <Accordion
-            head={formText.accordionHeadline}
-            dataGroup={formText.accordionDataGroup}
-        >
-
-            <div className={formText.accordion__content}>
+        <Accordion head="Hinzufügen">
+            <div className="accordion__content">
 
                 <Input
-                    className={formText.inputClassName}
-                    name={formText.name}
-                    placeholder={formText.placeholderName}
-                    value={data.name}
-                    onChange={(value) => handleChange(value, formText.name)}
+                    name="name"
+                    placeholder="Name*"
+                    value={data.name} 
+                    onChange={ (value) => handleChange(value, 'name')}
+                    style={{
+                        marginBottom: '10px',
+                    }}
                 />
 
                 <Input
-                    className={formText.inputClassName}
-                    name={formText.url}
-                    placeholder={formText.placeholderUrl}
-                    value={data.url}
-                    onChange={(value) => handleChange(value, formText.url)}
-                />
-
-
-                <Input
-                    className={formText.inputClassName}
-                    name={formText.eMail}
-                    placeholder={formText.placeholderEMail}
-                    value={data.eMail}
-                    onChange={(value) => handleChange(value, formText.eMail)}
+                    name="url"
+                    placeholder="Ulr*"
+                    value={data.url} 
+                    onChange={ (value) => handleChange(value, 'url')}
+                    style={{
+                        marginBottom: '10px',
+                    }}
                 />
 
 
                 <Input
-                    className={formText.inputClassName}
-                    name={formText.kommentar}
-                    placeholder={formText.placeholderKommentar}
-                    value={data.kommentar}
-                    onChange={(value) => handleChange(value, formText.kommentar)}
+                    name="eMail"
+                    placeholder="eMail*"
+                    value={data.eMail} 
+                    onChange={ (value) => handleChange(value, 'eMail')}
+                    style={{
+                        marginBottom: '10px',
+                    }}
                 />
 
-                <div className={formText.buttonClassName}>
+
+                <Input
+                    name="kommentar"
+                    placeholder="Kommentar"
+                    value={data.kommentar} 
+                    onChange={ (value) => handleChange(value, 'kommentar')}
+                    style={{
+                        marginBottom: '10px',
+                    }}
+                />
+
+                <div className="form_button">
                     <Button onClick={() => handleClick()}>senden</Button>
                 </div>
 
