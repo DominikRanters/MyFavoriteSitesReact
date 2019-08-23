@@ -22,7 +22,7 @@ function ListComponent(props) {
         <Accordion
             dataGroup={listText.accordionDataGroup}
             head={listText.accordionHeadline}
-            open={listText.lisisAccordionOpen}
+            open={listText.isAccordionOpen}
             searchPlaceholder={listText.searchPlaceholder}
             onSearch={(value) => onSearch(value)}
             onSearchEnter={(value) => onSearch(value)}

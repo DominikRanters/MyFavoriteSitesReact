@@ -2,7 +2,7 @@ const listText = {
     emptyString: '',
     accordionHeadline: 'Sites',
     accordionDataGroup: '1',
-    isAccordionOpen: true,
+    isAccordionOpen: 'true',
     searchPlaceholder: 'search',
     accordion__content: 'accordion__content'
 }
