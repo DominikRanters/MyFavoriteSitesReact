@@ -1,68 +1,62 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import ListComponent from './ListComponent';
 
+const handleClick = (siteUrl) => {
+    const win = window.open(siteUrl, '_blank');
+    win.focus();
+};
 
 class List extends PureComponent {
-
     constructor() {
         super();
         this.state = {
-            loading: 'false',
             sites: [],
-        }
+        };
 
         this.fetchUrl('Ahaus');
 
         this.fetchUrl = this.fetchUrl.bind(this);
         this.onSearch = this.onSearch.bind(this);
-        this.handleClick = this.handleClick.bind(this);
     }
 
     onSearch(searchValue) {
-
         clearTimeout(this.timeout);
 
         this.timeout = setTimeout(() => {
             chayns.showWaitCursor();
-            this.setState({ loading: 'true'})
             this.fetchUrl(searchValue);
         }, 500);
     }
 
-    fetchUrl(searchValue) {
+    async fetchUrl(searchValue) {
+        chayns.showWaitCursor();
 
-        let url = `https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchValue}&Skip=0&Take=50`
+        const url = `https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchValue}&Skip=0&Take=50`;
 
-        fetch(url)
-            .then((response) => {
-                return response.json();
-            }).then((json) => {
-                this.setState({
-                    loading: 'false',
-                    sites: json.Data,
-                })
-            }).catch((ex) => {
-                console.log(`Eroor`, ex)
-            })
-    }
+        const response = await fetch(url);
+        try {
+            const jsonBody = await response.json();
 
-    handleClick(siteUrl) {
-        let win = window.open(siteUrl, '_blank');
-        win.focus();
-
+            chayns.hideWaitCursor();
+            this.setState({
+                sites: jsonBody.Data,
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     render() {
-
+        const {
+            sites,
+        } = this.state;
         return (
             <ListComponent
                 onSearch={this.onSearch}
-                data={this.state}
-                handleClick={this.handleClick}
+                sites={sites}
+                handleClick={handleClick}
             />
-
-        )
+        );
     }
 }
 

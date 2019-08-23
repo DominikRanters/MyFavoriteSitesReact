@@ -10,12 +10,12 @@ class App extends PureComponent {
     render() {
         return (
             <div className="tapp">
-                <Intro 
+                <Intro
                     intro="Finden Sie neue Sites oder fügen Sie ihre eigene hinzu."
                     headline="Sites"
                 />
-                <Form/>
-                <List/>
+                <Form />
+                <List />
             </div>
         );
     }
