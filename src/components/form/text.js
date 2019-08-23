@@ -6,17 +6,17 @@ const formText = {
     sendText: 'Ihre Seite wird geprüft und anschließend hinzugefügt',
     name: 'name',
     url: 'url',
-    eMial: 'eMail',
+    eMail: 'eMail',
     kommentar: 'kommentar',
     inputClassName: 'form_input',
     buttonClassName: 'form_button',
     accordionHeadline: 'Hinzufügen',
     accordionDataGroup: '1',
     accordion__content: 'accordion__content',
-    placeholderName: 'Name',
-    placeholderUrl: 'Url',
-    placeholderEMail: 'eMail',
+    placeholderName: 'Name*',
+    placeholderUrl: 'Url*',
+    placeholderEMail: 'eMail*',
     placeholderKommentar: 'Kommentar',
-}
+};
 
 export default formText;

@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion } from 'chayns-components';
-import { Input } from 'chayns-components';
-import { Button } from 'chayns-components';
+import { Accordion, Input, Button } from 'chayns-components';
 import './Form.scss';
 import formText from './text';
 
-function FormComponent(props) {
-
-    const { handleChange, handleClick, data } = props;
+const FormComponent = (props) => {
+    const {
+        handleChange,
+        handleClick,
+        data,
+    } = props;
 
     return (
         <Accordion
@@ -23,7 +24,7 @@ function FormComponent(props) {
                     name={formText.name}
                     placeholder={formText.placeholderName}
                     value={data.name}
-                    onChange={(value) => handleChange(value, formText.name)}
+                    onChange={value => handleChange(value, formText.name)}
                 />
 
                 <Input
@@ -31,7 +32,7 @@ function FormComponent(props) {
                     name={formText.url}
                     placeholder={formText.placeholderUrl}
                     value={data.url}
-                    onChange={(value) => handleChange(value, formText.url)}
+                    onChange={value => handleChange(value, formText.url)}
                 />
 
 
@@ -40,7 +41,7 @@ function FormComponent(props) {
                     name={formText.eMail}
                     placeholder={formText.placeholderEMail}
                     value={data.eMail}
-                    onChange={(value) => handleChange(value, formText.eMail)}
+                    onChange={value => handleChange(value, formText.eMail)}
                 />
 
 
@@ -49,7 +50,7 @@ function FormComponent(props) {
                     name={formText.kommentar}
                     placeholder={formText.placeholderKommentar}
                     value={data.kommentar}
-                    onChange={(value) => handleChange(value, formText.kommentar)}
+                    onChange={value => handleChange(value, formText.kommentar)}
                 />
 
                 <div className={formText.buttonClassName}>
@@ -58,14 +59,14 @@ function FormComponent(props) {
 
             </div>
         </Accordion>
-    )
-}
+    );
+};
 
-FormComponent.PropTypes = {
+FormComponent.propTypes = {
     handleChange: PropTypes.func.isRequired,
     handleClick: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired,
-}
+    data: PropTypes.instanceOf(Object).isRequired
+};
 
 
-export default FormComponent
+export default FormComponent;

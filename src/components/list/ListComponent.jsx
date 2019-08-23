@@ -1,43 +1,47 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Accordion } from 'chayns-components';
-import { List, ListItem } from 'chayns-components';
+import { Accordion, List, ListItem } from 'chayns-components';
 import listText from './text';
 
-function ListComponent(props) {
-
-    const { onSearch, data, handleClick } = props;
-    let listItem = listText.emptyString;
-
-    if (data.sites !== null) {
-        listItem = data.sites.map(item => <ListItem
-            key={item.siteId}
-            title={item.appstoreName}
-            image={`https://sub60.tobit.com/l/${item.siteId}`}
-            onClick={() => handleClick(`http://chayns.net/${item.siteId}/`)}
-        />)
-    }
-
+const ListComponent = (props) => {
+    const { onSearch, sites, handleClick } = props;
     return (
         <Accordion
             dataGroup={listText.accordionDataGroup}
             head={listText.accordionHeadline}
             open={listText.isAccordionOpen}
             searchPlaceholder={listText.searchPlaceholder}
-            onSearch={(value) => onSearch(value)}
-            onSearchEnter={(value) => onSearch(value)}
+            onSearch={value => onSearch(value)}
+            onSearchEnter={value => onSearch(value)}
         >
             <div className={listText.accordion__content}>
-                <List>{listItem}</List>
+                <List>
+                    {
+                        sites && (
+                            sites.map(item => (
+                                <ListItem
+                                    key={item.siteId}
+                                    title={item.appstoreName}
+                                    image={`https://sub60.tobit.com/l/${item.siteId}`}
+                                    onClick={() => handleClick(`http://chayns.net/${item.siteId}/`)}
+                                />
+                            ))
+                        )
+                    }
+                </List>
             </div>
         </Accordion>
-    )
-}
+    );
+};
 
-ListComponent.PropTypes = {
+ListComponent.propTypes = {
     onSearch: PropTypes.func.isRequired,
-    data: PropTypes.object.isRequired,
+    sites: PropTypes.instanceOf(Array).isRequired,
     handleClick: PropTypes.func,
-}
+};
 
-export default ListComponent
+ListComponent.defaultProps = {
+    handleClick: null,
+};
+
+export default ListComponent;
